@@ -10,7 +10,7 @@
   <%= label_tag "Shots" %> <br />
   <%= number_field_tag "shots" %><br />
 
-  <%= label_tag "Ballistic Strength" %> <br />
+  <%= label_tag "Ballistic Skill" %> <br />
   <%= number_field_tag "ballistic_strength" %><br />
 
   <%= label_tag "Weapon Strength" %> <br />
@@ -37,11 +37,26 @@
 
   <%= label_tag "Armour" %> <br />
   <%= number_field_tag "armour" %><br />
+<hr />
+  <%= label_tag "Number of Complete kills" %> <br />
+  <%= number_field_tag "times_run" %><br />
 
   <%= submit_tag "Go!" %>
 <% end %>
 
 
-<%= @round %>
+
+
 
 <h1>Chart</h1>
+<% if !@final_array.nil? %>
+<img src="<%= Gchart.bar(:data => @final_array.values , :labels => @final_array.keys, :axis_with_labels => 'y') %>" />
+<% end %>
+
+
+
+<h1>Raw numbers</h1>
+<p><% @total_rounds.each do |round| %>
+  <%= round %>
+  <% end unless @total_rounds.nil? %>
+</p>
