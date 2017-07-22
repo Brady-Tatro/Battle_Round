@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  require 'gchart'
 
   def index
     @battle = {}
@@ -12,6 +13,9 @@ class StaticPagesController < ApplicationController
       @times_run -=1
       @total_rounds << @round
     end
+
+    aggregation(@total_rounds)
+
     render "index"
   end
 
@@ -104,5 +108,15 @@ class StaticPagesController < ApplicationController
       result << rand(6) + 1
     end
     return result
+  end
+
+  def aggregation(array)
+    @final_array = {}
+    array.sort.each do |number|
+      @final_array.store(number,array.count(number))
+    end
+
+    @final_array.values
+
   end
 end
