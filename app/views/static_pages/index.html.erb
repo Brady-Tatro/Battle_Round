@@ -37,11 +37,17 @@
 
   <%= label_tag "Armour" %> <br />
   <%= number_field_tag "armour" %><br />
+<hr />
+  <%= label_tag "Number of Complete kills" %> <br />
+  <%= number_field_tag "times_run" %><br />
 
   <%= submit_tag "Go!" %>
 <% end %>
 
 
-<%= @round %>
+<h1><% @total_rounds.each do |round| %>
+  <%= round %>
+<% end unless @total_rounds.nil? %>
+</h1>
 
 <h1>Chart</h1>
