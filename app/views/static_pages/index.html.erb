@@ -1,0 +1,47 @@
+<h1>Enter your data</h1>
+
+<%= form_tag static_pages_path @battle do %>
+<h2>
+  Attacking Unit
+</h2>
+  <%= label_tag "Attack Models" %> <br />
+  <%= number_field_tag "attack_models" %><br />
+
+  <%= label_tag "Shots" %> <br />
+  <%= number_field_tag "shots" %><br />
+
+  <%= label_tag "Ballistic Strength" %> <br />
+  <%= number_field_tag "ballistic_strength" %><br />
+
+  <%= label_tag "Weapon Strength" %> <br />
+  <%= number_field_tag "weapon_strength" %><br />
+
+  <%= label_tag "Damage" %> <br />
+  <%= number_field_tag "damage" %><br />
+
+  <%= label_tag "AP Value" %> <br />
+  <%= number_field_tag "ap_value" %><br />
+
+<hr />
+<h2>
+  Defending Unit
+</h2>
+  <%= label_tag "Defend Models" %> <br />
+  <%= number_field_tag "defend_models" %><br />
+
+  <%= label_tag "Toughness" %> <br />
+  <%= number_field_tag "toughness" %><br />
+
+  <%= label_tag "Wounds" %> <br />
+  <%= number_field_tag "wounds" %><br />
+
+  <%= label_tag "Armour" %> <br />
+  <%= number_field_tag "armour" %><br />
+
+  <%= submit_tag "Go!" %>
+<% end %>
+
+
+<%= @round %>
+
+<h1>Chart</h1>
