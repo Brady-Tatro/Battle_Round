@@ -33,7 +33,11 @@ class StaticPagesController < ApplicationController
       :toughness,
       :wounds,
       :armour,
-      :times_run
+      :invulnerable,
+      :times_run,
+      :authenticity_token,
+      :utf8,
+      :commit
     )
   end
 
@@ -77,9 +81,13 @@ class StaticPagesController < ApplicationController
     if @wounds.length > 0
       @saved = roll(@wounds.length)
       @original = @saved.length
-      @saved.delete_if { |save| save < @battle_data["armour"].to_i }
+      @saved.delete_if { |save| save < @battle_data["armour"].to_i && @battle_data["invulnerable"].to_i }
       if @battle_data["ap_value"].to_i > 0
-        @saved.delete_if { |save| save - @battle_data["ap_value"].to_i < @battle_data["armour"].to_i  }
+        if @battle_data["invulnerable"].to_i > @battle_data["armour"].to_i - @battle_data["ap_value"].to_i
+          @saved.delete_if { |save| save < @battle_data["invulnerable"].to_i  }
+        else
+          @saved.delete_if { |save| save - @battle_data["ap_value"].to_i < @battle_data["armour"].to_i  }
+        end
       end
       if @saved.nil?
         @damaged = @original
