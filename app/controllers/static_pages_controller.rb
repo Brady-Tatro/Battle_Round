@@ -25,7 +25,7 @@ class StaticPagesController < ApplicationController
     params.permit(
       :attack_models,
       :shots,
-      :ballistic_strength,
+      :ballistic_skill,
       :weapon_strength,
       :damage,
       :ap_value,
@@ -52,28 +52,25 @@ class StaticPagesController < ApplicationController
   def to_hit
     @shots = @battle_data["attack_models"].to_i * @battle_data["shots"].to_i
     @rolled_shots = roll(@shots)
-    @rolled_shots.delete_if { |hit| hit < @battle_data["ballistic_strength"].to_i }
+    @rolled_shots.delete_if { |hit| hit < @battle_data["ballistic_skill"].to_i }
     @hits = @rolled_shots.length
   end
 
   def to_wound
     if @hits > 0
       @wounds = roll(@hits)
-      if @battle_data["strength"].to_i >= @battle_data["toughness"].to_i * 2
+      if @battle_data["weapon_strength"].to_i >= @battle_data["toughness"].to_i * 2
         @wounds.delete_if { |wound| wound < 2 }
-      elsif @battle_data["strength"].to_i > @battle_data["toughness"].to_i
+      elsif @battle_data["weapon_strength"].to_i > @battle_data["toughness"].to_i
         @wounds.delete_if { |wound| wound < 3 }
-      elsif @battle_data["strength"].to_i == @battle_data["toughness"].to_i
+      elsif @battle_data["weapon_strength"].to_i == @battle_data["toughness"].to_i
         @wounds.delete_if { |wound| wound < 4 }
-      elsif @battle_data["strength"].to_i / 2 <= @battle_data["toughness"].to_i
+      elsif @battle_data["weapon_strength"].to_i / 2 <= @battle_data["toughness"].to_i
         @wounds.delete_if { |wound| wound < 6 }
-      elsif @battle_data["strength"].to_i < @battle_data["toughness"].to_i
+      elsif @battle_data["weapon_strength"].to_i < @battle_data["toughness"].to_i
         @wounds.delete_if { |wound| wound < 5 }
-      else
-        "error"
       end
     end
-    return @wounds.length
   end
 
   def saving_throw
@@ -116,7 +113,7 @@ class StaticPagesController < ApplicationController
       @final_array.store(number,array.count(number))
     end
 
-    @final_array.values
+    @final_array.values.sort
 
   end
 end
