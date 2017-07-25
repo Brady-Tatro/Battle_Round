@@ -34,7 +34,8 @@ class StaticPagesController < ApplicationController
       :wounds,
       :armour,
       :invulnerable,
-      :neg1_to_hit,
+      :neg1_to_hit_attack,
+      :neg1_to_hit_defend,
       :plus1_to_hit,
       :times_run,
       :authenticity_token,
@@ -64,8 +65,10 @@ class StaticPagesController < ApplicationController
     @rolled_shots = roll(@shots)
     if @battle_data["plus1_to_hit"] == "1"
       @rolled_shots.delete_if { |hit| hit + 1 < @battle_data["ballistic_skill"].to_i }
-    elsif @battle_data["neg1_to_hit"] == "1"
+    elsif @battle_data["neg1_to_hit_attack"] || @battle_data["neg1_to_hit_defend"] == "1"
       @rolled_shots.delete_if { |hit| hit - 1 < @battle_data["ballistic_skill"].to_i }
+    elsif @battle_data["neg1_to_hit_attack"] && @battle_data["neg1_to_hit_defend"] == "1"
+      @rolled_shots.delete_if { |hit| hit - 2 < @battle_data["ballistic_skill"].to_i }
     else
       @rolled_shots.delete_if { |hit| hit < @battle_data["ballistic_skill"].to_i }
     end

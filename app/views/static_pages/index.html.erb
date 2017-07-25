@@ -22,11 +22,6 @@
   <%= label_tag "AP Value" %> <br />
   <%= number_field_tag "ap_value" %><br />
 
-  <%= label_tag "-1 to Hit" %> <br />
-  <%= check_box_tag "neg1_to_hit" %><br />
-
-  <%= label_tag "+1 to Hit" %> <br />
-  <%= check_box_tag "plus1_to_hit" %><br />
 <hr />
 <h2>
   Defending Unit
@@ -46,6 +41,18 @@
   <%= label_tag "Invulnerable Save" %> <br />
   <%= number_field_tag "invulnerable" %><br />
 <hr />
+<h2> Modifiers </h2>
+<%= label_tag "-1 to Hit(attacking models)" %> <br />
+<%= check_box_tag "neg1_to_hit_attack" %><br />
+
+<%= label_tag "-1 to Hit(defending models)" %> <br />
+<%= check_box_tag "neg1_to_hit_defend" %><br />
+
+<%= label_tag "+1 to Hit" %> <br />
+<%= check_box_tag "plus1_to_hit" %><br />
+
+<hr />
+
   <%= label_tag "Number of Complete kills" %> <br />
   <%= number_field_tag "times_run" %><br />
 
