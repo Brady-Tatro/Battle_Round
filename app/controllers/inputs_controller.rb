@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+class InputsController < ApplicationController
   require 'gchart'
 
   def index
@@ -16,7 +16,7 @@ class StaticPagesController < ApplicationController
 
     aggregation(@total_rounds)
 
-    render "index"
+    render "show"
   end
 
   private
