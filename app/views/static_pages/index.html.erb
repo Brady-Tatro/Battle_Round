@@ -4,7 +4,7 @@
 <h2>
   Attacking Unit
 </h2>
-  <%= label_tag "Attack Models" %> <br />
+  <%= label_tag "Attacking Models" %> <br />
   <%= number_field_tag "attack_models" %><br />
 
   <%= label_tag "Shots" %> <br />
@@ -21,12 +21,17 @@
 
   <%= label_tag "AP Value" %> <br />
   <%= number_field_tag "ap_value" %><br />
-  
+
+  <%= label_tag "-1 to Hit" %> <br />
+  <%= check_box_tag "neg1_to_hit" %><br />
+
+  <%= label_tag "+1 to Hit" %> <br />
+  <%= check_box_tag "plus1_to_hit" %><br />
 <hr />
 <h2>
   Defending Unit
 </h2>
-  <%= label_tag "Defend Models" %> <br />
+  <%= label_tag "Defending Models" %> <br />
   <%= number_field_tag "defend_models" %><br />
 
   <%= label_tag "Toughness" %> <br />
@@ -35,7 +40,7 @@
   <%= label_tag "Wounds" %> <br />
   <%= number_field_tag "wounds" %><br />
 
-  <%= label_tag "Armour" %> <br />
+  <%= label_tag "Armour Save" %> <br />
   <%= number_field_tag "armour" %><br />
 
   <%= label_tag "Invulnerable Save" %> <br />
