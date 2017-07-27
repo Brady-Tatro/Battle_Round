@@ -36,6 +36,7 @@ class InputsController < ApplicationController
       :wounds,
       :armour,
       :invulnerable,
+      :always_hit,
       :neg1_to_hit_attack,
       :neg1_to_hit_defend,
       :plus1_to_hit,
