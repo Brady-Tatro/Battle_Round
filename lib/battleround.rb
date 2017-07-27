@@ -29,7 +29,11 @@ module BattleRound
 
   def to_hit
     @total_shots = @attacking_models * @shots
-    @rolled_shots = roll(@total_shots)
+    if @battle_data["always_hit"] == "1"
+      @hits = @total_shots
+    else
+      @rolled_shots = roll(@total_shots)
+    end
     rerolled_shots = 0
     if @battle_data["reroll1_hits"] == 1
       @rolled_shots.each do |ones|
@@ -57,7 +61,9 @@ module BattleRound
     else
       @rolled_shots.delete_if { |hit| hit < @ballistic_skill }
     end
-    @hits = @rolled_shots.length
+    if @battle_data["always_hit"] != "1"
+      @hits = @rolled_shots.length
+    end
   end
 
   def to_wound
