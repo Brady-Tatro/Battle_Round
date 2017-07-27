@@ -42,14 +42,26 @@
   <%= number_field_tag "invulnerable" %><br />
 <hr />
 <h2> Modifiers </h2>
+<%= check_box_tag "neg1_to_hit_attack" %>
 <%= label_tag "-1 to Hit(attacking models)" %> <br />
-<%= check_box_tag "neg1_to_hit_attack" %><br />
 
+<%= check_box_tag "neg1_to_hit_defend" %>
 <%= label_tag "-1 to Hit(defending models)" %> <br />
-<%= check_box_tag "neg1_to_hit_defend" %><br />
 
+<%= check_box_tag "plus1_to_hit" %>
 <%= label_tag "+1 to Hit" %> <br />
-<%= check_box_tag "plus1_to_hit" %><br />
+
+<%= check_box_tag "reroll_hits" %>
+<%= label_tag "Reroll all failed to hit rolls" %> </br>
+
+<%= check_box_tag "reroll1_hits" %>
+<%= label_tag "Reroll all 1s to hit rolls" %> </br>
+
+<%= check_box_tag "reroll_wounds" %>
+<%= label_tag "Reroll all failed to wound rolls" %> </br>
+
+<%= check_box_tag "reroll1_wounds" %>
+<%= label_tag "Reroll all 1s to wound rolls" %> </br>
 
 <hr />
 

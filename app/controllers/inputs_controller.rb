@@ -40,6 +40,10 @@ class InputsController < ApplicationController
       :neg1_to_hit_defend,
       :plus1_to_hit,
       :times_run,
+      :reroll_hits,
+      :reroll1_hits,
+      :reroll_wounds,
+      :reroll1_wounds,
       :authenticity_token,
       :utf8,
       :commit
