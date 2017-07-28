@@ -27,6 +27,8 @@ class InputsController < ApplicationController
     params.permit(
       :attack_models,
       :shots,
+      :d3,
+      :d6,
       :ballistic_skill,
       :weapon_strength,
       :damage,

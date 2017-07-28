@@ -7,8 +7,12 @@
   <%= label_tag "Attacking Models" %> <br />
   <%= number_field_tag "attack_models" %><br />
 
-  <%= label_tag "Shots" %> <br />
+  <%= label_tag "Attacks" %> <br />
   <%= number_field_tag "shots" %><br />
+  <%= check_box_tag "d3" %>
+  <%= label_tag "D3 Attacks" %>
+  <%= check_box_tag "d6" %>
+  <%= label_tag "D6 Attacks" %><br />
 
   <%= label_tag "Ballistic Skill" %> <br />
   <%= number_field_tag "ballistic_skill" %><br />
@@ -23,6 +27,7 @@
   <%= number_field_tag "ap_value" %><br />
 
 <hr />
+
 <h2>
   Defending Unit
 </h2>
@@ -41,6 +46,7 @@
   <%= label_tag "Invulnerable Save" %> <br />
   <%= number_field_tag "invulnerable" %><br />
 <hr />
+
 <h2> Modifiers </h2>
 <%= check_box_tag "neg1_to_hit_attack" %>
 <%= label_tag "-1 to Hit(attacking models)" %> <br />
