@@ -32,6 +32,8 @@ class InputsController < ApplicationController
       :ballistic_skill,
       :weapon_strength,
       :damage,
+      :d3_damage,
+      :d6_damage,
       :ap_value,
       :defend_models,
       :toughness,
