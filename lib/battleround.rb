@@ -28,7 +28,22 @@ module BattleRound
   end
 
   def to_hit
+    @total_shots = 0
+    if @battle_data["d3"] == "1"
+      @attacking_models.times do
+        @shots.times do
+          @total_shots += rand(3) + 1
+        end
+      end
+    elsif @battle_data["d6"] == "1"
+      @attacking_models.times do
+        @shots.times do
+          @total_shots = roll(1)
+        end
+      end
+    else
     @total_shots = @attacking_models * @shots
+    end
     if @battle_data["always_hit"] == "1"
       @hits = @total_shots
     else
@@ -177,7 +192,13 @@ module BattleRound
       end
       current_wounds = 0
       while @damaged > 0
+        if @battle_data["d3_damage"] == "1"
+          current_wounds += rand(3) + 1
+        elsif @battle_data["d6_damage"] = "1"
+          current_wounds += roll(1)
+        else
         current_wounds += @damage
+        end
           if current_wounds >= @hp
             @defending_models = @defending_models - 1
             current_wounds = 0
