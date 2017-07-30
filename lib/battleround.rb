@@ -38,7 +38,7 @@ module BattleRound
     elsif @battle_data["d6"] == "1"
       @attacking_models.times do
         @shots.times do
-          @total_shots = roll(1)
+          @total_shots = rand(6) + 1
         end
       end
     else
@@ -48,7 +48,7 @@ module BattleRound
       @hits = @total_shots
     else
       @rolled_shots = roll(@total_shots)
-    rerolled_shots = 0
+      rerolled_shots = 0
       if @battle_data["reroll1_hits"] == 1
         @rolled_shots.each do |ones|
           if ones == 1
@@ -195,7 +195,7 @@ module BattleRound
         if @battle_data["d3_damage"] == "1"
           current_wounds += rand(3) + 1
         elsif @battle_data["d6_damage"] = "1"
-          current_wounds += roll(1)
+          current_wounds += rand(6) + 1
         else
         current_wounds += @damage
         end
