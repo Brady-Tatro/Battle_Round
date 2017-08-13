@@ -2,7 +2,7 @@ module Plasma
 
   def plasma_to_hit
     @models_to_shoot = @attacking_models
-    @total_hits = 0
+    @hits = 0
 
     while @models_to_shoot > 0
       @ones_rolled = false
@@ -63,6 +63,8 @@ module Plasma
   end
 
   def accumilation
-    @total_shots = (@rolled_shots << @rerolled_shots).flatten!
+    total_shots = (@rolled_shots << @rerolled_shots).flatten!
+    total_shots.delete_if { |hit| hit < @ballistic_skill }
+    @hits = total_shots.length
   end
 end
