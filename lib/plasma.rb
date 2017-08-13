@@ -3,6 +3,7 @@ module Plasma
   def plasma_to_hit
     @models_to_shoot = @attacking_models
     @hits = 0
+    binding.pry
 
     while @models_to_shoot > 0
       @ones_rolled = false

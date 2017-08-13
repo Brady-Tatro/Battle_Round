@@ -7,7 +7,7 @@ module BattleRound
   include ToHit
   include ToWound
   include SavingThrow
-  include Plasma 
+  include Plasma
 
   def battle(battle_data)
     @battle_data = battle_data
@@ -26,6 +26,7 @@ module BattleRound
 
     while @defending_models > 0 do
       if @battle_data["plasma"] == 1
+        binding.pry
         plasma_to_hit
       else
         to_hit
