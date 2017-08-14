@@ -12,6 +12,7 @@ module BattleRound
   def battle(battle_data)
     @battle_data = battle_data
     @round = 0
+    @died_to_plasma = 0
     @defending_models = @battle_data["defend_models"].to_i
     @attacking_models = @battle_data["attack_models"].to_i
     @shots = @battle_data["shots"].to_i
@@ -25,8 +26,7 @@ module BattleRound
     @hp = @battle_data["wounds"].to_i
 
     while @defending_models > 0 do
-      if @battle_data["plasma"] == 1
-        binding.pry
+      if @battle_data["plasma"] == "1"
         plasma_to_hit
       else
         to_hit

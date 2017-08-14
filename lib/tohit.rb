@@ -8,7 +8,7 @@ module ToHit
     else
       @rolled_shots = roll(@total_shots)
       rerolled_shots = 0
-      if @battle_data["reroll1_hits"] == 1
+      if @battle_data["reroll1_hits"] == "1"
         @rolled_shots.each do |ones|
           if ones == 1
             rerolled_shots += 1
@@ -16,7 +16,7 @@ module ToHit
         end
         @rolled_shots << roll(rerolled_shots)
         @rolled_shots.delete_if { |hit| hit < @ballistic_skill }
-      elsif @battle_data["reroll_hits"] == 1
+      elsif @battle_data["reroll_hits"] == "1"
         @rolled_shots.each do |misses|
           if misses < @ballistic_skill
             rerolled_shots += 1
