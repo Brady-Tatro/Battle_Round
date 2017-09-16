@@ -84,22 +84,5 @@
   <%= label_tag "Number of Complete kills" %> <br />
   <%= number_field_tag "times_run" %><br />
 
-  <%= submit_tag "Go!" %>
-<% end %>
-
-
-
-
-
-<h1>Chart</h1>
-<% if !@final_array.nil? %>
-<img src="<%= Gchart.bar(:data => @final_array.values , :labels => @final_array.keys, :axis_with_labels => 'y') %>" />
-<% end %>
-
-
-
-<h1>Raw numbers</h1>
-<p><% @total_rounds.each do |round| %>
-  <%= round %>
-  <% end unless @total_rounds.nil? %>
-</p>
+  <%= submit_tag "Begin Battle" %>
+<% end %><br />

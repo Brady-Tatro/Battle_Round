@@ -11,7 +11,9 @@
   <% end unless @total_rounds.nil? %>
 </p>
 
-<h1>Number of Models lost to Plasma</h1>
-<p><%= @died_to_plasma %></p>
-
-<a href="javascript:history.back()">Change Units</a>
+<% if @battle_data["plasma"] == "1" %>
+  <h1>Number of Models lost to Plasma</h1>
+  <p><%= @died_to_plasma %></p>
+<% end %>
+<button type="button" onclick="location.reload()">Fight Again</button><br />
+<button onclick="goBack()">Change Units</button>

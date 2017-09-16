@@ -24,7 +24,6 @@ module BattleRound
     @ap_value = @battle_data["ap_value"].to_i
     @damage = @battle_data["damage"].to_i
     @hp = @battle_data["wounds"].to_i
-
     while @defending_models > 0 do
       if @battle_data["plasma"] == "1"
         plasma_to_hit
