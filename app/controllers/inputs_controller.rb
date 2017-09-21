@@ -11,7 +11,7 @@ class InputsController < ApplicationController
 
   def create
     validation(battle_params)
-    if validated == true
+    if @validated == true
       @total_rounds = []
       @times_run = params["times_run"].to_i
       while @times_run > 0
@@ -24,7 +24,8 @@ class InputsController < ApplicationController
 
       render "show"
     else
-      @errors = []
+      render "show"
+      @errors
     end
   end
 

@@ -1,30 +1,30 @@
+require 'pry'
 module Validation
 
-  def Validation(validation_data)
+  def validation(validation_data)
+    validate = validation_data
     validation_arry = []
-    validation_arry << @defending_models = @battle_data["defend_models"].to_i
-    validation_arry << @attacking_models = @battle_data["attack_models"].to_i
-    validation_arry << @shots = @battle_data["shots"].to_i
-    validation_arry << @ballistic_skill = @battle_data["ballistic_skill"].to_i
-    validation_arry << @weapon_strength = @battle_data["weapon_strength"].to_i
-    validation_arry << @toughness = @battle_data["toughness"].to_i
-    validation_arry << @armour = @battle_data["armour"].to_i
-    validation_arry << @damage = @battle_data["damage"].to_i
-    validation_arry << @hp = @battle_data["wounds"].to_i
-    @invulnerable = @battle_data["invulnerable"].to_i
-    @ap_value = @battle_data["ap_value"].to_i
-
-    validation_arry.each do |zero|
-      if zero == 0
-        validated = false
-        @errors << 'A value was 0'
+    @errors = []
+    validate.each do |key, value|
+      if key != "invulnerable" && key != "ap_value"
+        if value == "" || value == "0"
+          validation_arry << key
+        end
+      end
+      if key == "ballistic_skill" && value != "" && value.to_i == 1 || value.to_i >= 7
+        @errors << 'Ballistic skills is invalid'
       end
     end
 
-    if @ballistic_skill == 1 || @ballistic_skill >= 7
-      validated = false
-      @errors << 'Ballistc skill is invalid'
+    if !validation_arry.nil?
+      validation_arry.each do |names|
+        @errors << "#{names.gsub(/_/, ' ')} value was 0 or not filled in"
+      end
     end
 
+    if @errors.length
+      @validated = false
+      return @errors
+    end
   end
 end
