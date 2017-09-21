@@ -11,9 +11,6 @@ module Validation
           validation_arry << key
         end
       end
-      if key == "ballistic_skill" && value != "" && value.to_i == 1 || value.to_i >= 7
-        @errors << 'Ballistic skills is invalid'
-      end
     end
 
     if !validation_arry.nil?
@@ -22,7 +19,7 @@ module Validation
       end
     end
 
-    if @errors.length
+    if @errors.length > 0
       @validated = false
       return @errors
     end

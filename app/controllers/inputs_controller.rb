@@ -10,6 +10,7 @@ class InputsController < ApplicationController
   end
 
   def create
+    @validated = true
     validation(battle_params)
     if @validated == true
       @total_rounds = []
