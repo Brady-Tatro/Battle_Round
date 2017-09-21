@@ -1,24 +1,32 @@
 class InputsController < ApplicationController
   require 'gchart'
   require 'battleround.rb'
+  require 'validation.rb'
   include BattleRound
+  include Validation
 
   def index
     @battle = {}
   end
 
   def create
-    @total_rounds = []
-    @times_run = params["times_run"].to_i
-    while @times_run > 0
-      battle(battle_params)
-      @times_run -=1
-      @total_rounds << @round
+    validation(battle_params)
+    if @validated == true
+      @total_rounds = []
+      @times_run = params["times_run"].to_i
+      while @times_run > 0
+        battle(battle_params)
+        @times_run -=1
+        @total_rounds << @round
+      end
+
+      aggregation(@total_rounds)
+
+      render "show"
+    else
+      render "show"
+      @errors
     end
-
-    aggregation(@total_rounds)
-
-    render "show"
   end
 
   private
