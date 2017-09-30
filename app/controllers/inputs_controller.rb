@@ -66,12 +66,12 @@ class InputsController < ApplicationController
   end
 
   def aggregation(array)
-    @final_array = {}
+    @final_hash = {}
     array.sort.each do |number|
-      @final_array.store(number,array.count(number))
+      @final_hash.store(number,array.count(number))
     end
-
-    @final_array.values.sort
+    # @final_array = @final_hash.to_a
+    @final_hash.values.sort
 
   end
 end

@@ -7,14 +7,14 @@
 
 <% else %>
 
-  <% if !@final_array.nil? %>
-    <img src="<%= Gchart.bar(:data => @final_array.values , :labels => @final_array.keys, :axis_with_labels => 'y') %>" />
+  <% if !@final_hash.nil? %>
+    <img src="<%= Gchart.bar(:data => @final_hash.values, :labels => @final_hash.keys, :axis_with_labels => 'y') %>" />
   <% end %>
 
 
 
   <h1>Mean: Median: Mode</h1>
-  <p><% @final_array.each do |round| %>
+  <p><% @final_hash.each do |round| %>
     <%= round %>
     <% end unless @total_rounds.nil? %>
   </p>
