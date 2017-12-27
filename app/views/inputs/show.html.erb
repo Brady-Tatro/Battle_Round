@@ -1,29 +1,29 @@
 <h1>Chart</h1>
-<% if !@errors.nil? %>
-<h1><%= "Error: " %></h1>
-  <% @errors.each do |error| %>
-    <li><%= error %></li>
-  <% end %><br />
+<% if @errors.length > 0 %>
+  <h1><%= "Error: " %></h1>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %><br />
 
-  <% else %>
+<% else %>
 
-  <% if !@final_array.nil? %>
-  <img src="<%= Gchart.bar(:data => @final_array.values , :labels => @final_array.keys, :axis_with_labels => 'y') %>" />
+  <% if !@final_hash.nil? %>
+    <img src="<%= Gchart.bar(:data => @final_hash.values, :labels => @final_hash.keys, :axis_with_labels => 'y', :max_value => @highest, :min_value => 0, :size => '250x250') %>" />
   <% end %>
 
 
 
-  <h1>Raw numbers</h1>
-  <p><% @total_rounds.each do |round| %>
+  <h1>Mean: Median: Mode</h1>
+  <p><% @final_hash.each do |round| %>
     <%= round %>
     <% end unless @total_rounds.nil? %>
   </p>
 
-  <% if @battle_data["plasma"] == "1" %>
+  <% if !@died_to_plasma.nil? && @died_to_plasma > 0 %>
     <h1>Number of Models lost to Plasma</h1>
     <p><%= @died_to_plasma %></p>
+    <% end %>
 
     <button type="button" onclick="location.reload()">Fight Again</button><br />
-  <% end %>
 <% end %>
 <button onclick="goBack()">Change Units</button>
