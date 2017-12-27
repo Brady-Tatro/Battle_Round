@@ -71,7 +71,7 @@ class InputsController < ApplicationController
       @final_hash.store(number,array.count(number))
     end
     # @final_array = @final_hash.to_a
-    @final_hash.values.sort
-
+    @final_hash.sort
+    @highest = @final_hash.values.sort.last
   end
 end
