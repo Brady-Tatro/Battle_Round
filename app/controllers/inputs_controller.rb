@@ -49,6 +49,7 @@ class InputsController < ApplicationController
       :wounds,
       :armour,
       :invulnerable,
+      :leadership,
       :plasma,
       :always_hit,
       :neg1_to_hit_attack,

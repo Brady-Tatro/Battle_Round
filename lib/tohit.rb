@@ -37,7 +37,6 @@ module ToHit
       else
         @rolled_shots.delete_if { |hit| hit < @ballistic_skill }
       end
-
       @hits = @rolled_shots.length
     end
   end

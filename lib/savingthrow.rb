@@ -13,12 +13,13 @@ module SavingThrow
         end
       end
       if @saved.nil?
-        @damaged = @original
+        @unsaved_wounds = @original
       else
-        @damaged = @original - @saved.length
+        @unsaved_wounds = @original - @saved.length
       end
       current_wounds = 0
-      while @damaged > 0
+      @died_this_round = 0
+      while @unsaved_wounds > 0
         if @battle_data["d3_damage"] == "1"
           current_wounds += d3
         elsif @battle_data["d6_damage"] = "1"
@@ -27,10 +28,11 @@ module SavingThrow
         current_wounds += @damage
         end
           if current_wounds >= @hp
-            @defending_models = @defending_models - 1
+            @defending_models -= 1
+            @died_this_round += 1
             current_wounds = 0
           end
-        @damaged -= 1
+        @unsaved_wounds -= 1
       end
     end
   end
