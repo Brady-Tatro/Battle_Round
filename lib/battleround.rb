@@ -3,11 +3,13 @@ module BattleRound
   require 'towound.rb'
   require 'savingthrow.rb'
   require 'plasma.rb'
+  require 'moral.rb'
 
   include ToHit
   include ToWound
   include SavingThrow
   include Plasma
+  include Moral
 
   def battle(battle_data)
     @battle_data = battle_data
@@ -24,7 +26,8 @@ module BattleRound
     @ap_value = @battle_data["ap_value"].to_i
     @damage = @battle_data["damage"].to_i
     @hp = @battle_data["wounds"].to_i
-    
+    @leadership = @battle_data["leadership"].to_i
+
     while @defending_models > 0 do
       if @battle_data["plasma"] == "1"
         plasma_to_hit
@@ -33,6 +36,7 @@ module BattleRound
       end
       to_wound
       saving_throw
+      moral_test
       @round += 1
       if @battle_data["times_run"].to_i >= 10 && @round == 100
         break
