@@ -51,6 +51,7 @@ class InputsController < ApplicationController
       :invulnerable,
       :leadership,
       :plasma,
+      :sniper,
       :always_hit,
       :neg1_to_hit_attack,
       :neg1_to_hit_defend,
