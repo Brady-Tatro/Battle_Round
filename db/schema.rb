@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171230235051) do
+ActiveRecord::Schema.define(version: 20180101182038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "sumbissions", force: :cascade do |t|
+  create_table "battles", force: :cascade do |t|
     t.integer "attack_models",      null: false
     t.integer "shots",              null: false
     t.integer "ballistic_skill",    null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20171230235051) do
     t.integer "ap_value",           null: false
     t.integer "defend_models",      null: false
     t.integer "toughness",          null: false
-    t.integer "armor",              null: false
+    t.integer "armour",             null: false
     t.integer "invulnerable",       null: false
     t.integer "leadership",         null: false
     t.integer "times_run",          null: false
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 20171230235051) do
     t.string  "reroll1_hits"
     t.string  "reroll_wounds"
     t.string  "reroll1_wounds"
+    t.integer "wounds",             null: false
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.integer "total_rounds",   array: true
+    t.integer "died_to_plasma"
+    t.integer "battle_id"
+    t.index ["battle_id"], name: "index_results_on_battle_id", using: :btree
   end
 
 end

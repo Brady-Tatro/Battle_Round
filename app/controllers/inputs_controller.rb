@@ -5,30 +5,24 @@ class InputsController < ApplicationController
   include BattleRound
   include Validation
 
-  def index
-    @battle = {}
+  def new
+    @battle = Battle.new
   end
 
   def create
-    @validated = true
-    validation(battle_params)
-    if @validated == true
-      @total_rounds = []
-      @times_run = params["times_run"].to_i
-      while @times_run > 0
-        battle(battle_params)
-        @times_run -=1
-        @total_rounds << @round
-      end
-
-      aggregation(@total_rounds)
-
-      render "show"
+    @battle = Battle.new(battle_params)
+    @battle.save
+    battle_results
+    @result = Result.new(total_rounds: @total_rounds, died_to_plasma: @died_to_plasma)
+    @current_Battle = Battle.find(@battle.id)
+    @result.battle_id = @current_Battle.id
+    if @result.save
+      puts "wokring"
     else
-      render "show"
-      @errors
+      puts  "#{@result.errors.full_messages.join("\n")}"
     end
   end
+
 
   private
 
@@ -60,11 +54,29 @@ class InputsController < ApplicationController
       :reroll_hits,
       :reroll1_hits,
       :reroll_wounds,
-      :reroll1_wounds,
-      :authenticity_token,
-      :utf8,
-      :commit
+      :reroll1_wounds
     )
+  end
+
+  def battle_results
+    @validated = true
+    validation(battle_params)
+    if @validated == true
+      @total_rounds = []
+      @times_run = params["times_run"].to_i
+      while @times_run > 0
+        battle(battle_params)
+        @times_run -=1
+        @total_rounds << @round
+      end
+
+      # aggregation(@total_rounds)
+
+      # render "show"
+    else
+      # render "show"
+      @errors
+    end
   end
 
   def aggregation(array)
