@@ -10,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180101182038) do
+ActiveRecord::Schema.define(version: 20180103023848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "battles", force: :cascade do |t|
-    t.integer "attack_models",      null: false
-    t.integer "shots",              null: false
-    t.integer "ballistic_skill",    null: false
-    t.integer "weapon_strength",    null: false
-    t.integer "damage",             null: false
-    t.integer "ap_value",           null: false
-    t.integer "defend_models",      null: false
-    t.integer "toughness",          null: false
-    t.integer "armour",             null: false
-    t.integer "invulnerable",       null: false
-    t.integer "leadership",         null: false
-    t.integer "times_run",          null: false
+    t.integer "attack_models",                      null: false
+    t.integer "shots",                              null: false
+    t.integer "ballistic_skill",                    null: false
+    t.integer "weapon_strength",                    null: false
+    t.integer "damage",                             null: false
+    t.integer "ap_value",           default: 0,     null: false
+    t.integer "defend_models",                      null: false
+    t.integer "toughness",                          null: false
+    t.integer "armour",                             null: false
+    t.integer "invulnerable",       default: 0,     null: false
+    t.integer "leadership",                         null: false
+    t.integer "times_run",                          null: false
     t.string  "d3"
     t.string  "d6"
     t.string  "plasma"
@@ -40,14 +40,10 @@ ActiveRecord::Schema.define(version: 20180101182038) do
     t.string  "reroll1_hits"
     t.string  "reroll_wounds"
     t.string  "reroll1_wounds"
-    t.integer "wounds",             null: false
-  end
-
-  create_table "results", force: :cascade do |t|
-    t.integer "total_rounds",   array: true
+    t.integer "wounds",                             null: false
+    t.integer "total_rounds",                                    array: true
     t.integer "died_to_plasma"
-    t.integer "battle_id"
-    t.index ["battle_id"], name: "index_results_on_battle_id", using: :btree
+    t.boolean "saved",              default: false
   end
 
 end

@@ -5,7 +5,7 @@ class InputsController < ApplicationController
   include BattleRound
   include Validation
 
-  def new
+  def index
     @battle = Battle.new
   end
 
@@ -19,10 +19,14 @@ class InputsController < ApplicationController
     if @result.save
       puts "wokring"
     else
-      puts  "#{@result.errors.full_messages.join("\n")}"
+      puts "#{@result.errors.full_messages.join("\n")}"
     end
+    show(@result.id)
   end
 
+  def show(result_id)
+    @showing_result = Result.find(result_id)
+  end
 
   private
 
