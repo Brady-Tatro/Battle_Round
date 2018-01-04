@@ -11,21 +11,16 @@ class InputsController < ApplicationController
 
   def create
     @battle = Battle.new(battle_params)
-    @battle.save
     battle_results
-    @result = Result.new(total_rounds: @total_rounds, died_to_plasma: @died_to_plasma)
-    @current_Battle = Battle.find(@battle.id)
-    @result.battle_id = @current_Battle.id
-    if @result.save
-      puts "wokring"
-    else
-      puts "#{@result.errors.full_messages.join("\n")}"
+    @battle.total_rounds = @total_rounds
+    if @battle.save
+      redirect_to action: "show", id: @battle.id
     end
-    show(@result.id)
   end
 
-  def show(result_id)
-    @showing_result = Result.find(result_id)
+  def show
+    @showing_result = Battle.find(params[:id])
+    aggregation(@showing_result[:total_rounds])
   end
 
   private
@@ -63,23 +58,12 @@ class InputsController < ApplicationController
   end
 
   def battle_results
-    @validated = true
-    validation(battle_params)
-    if @validated == true
-      @total_rounds = []
-      @times_run = params["times_run"].to_i
-      while @times_run > 0
-        battle(battle_params)
-        @times_run -=1
-        @total_rounds << @round
-      end
-
-      # aggregation(@total_rounds)
-
-      # render "show"
-    else
-      # render "show"
-      @errors
+    @total_rounds = []
+    @times_run = params["times_run"].to_i
+    while @times_run > 0
+      battle(battle_params)
+      @times_run -=1
+      @total_rounds << @round
     end
   end
 
