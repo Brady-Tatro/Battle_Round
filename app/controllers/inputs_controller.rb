@@ -6,28 +6,21 @@ class InputsController < ApplicationController
   include Validation
 
   def index
-    @battle = {}
+    @battle = Battle.new
   end
 
   def create
-    @validated = true
-    validation(battle_params)
-    if @validated == true
-      @total_rounds = []
-      @times_run = params["times_run"].to_i
-      while @times_run > 0
-        battle(battle_params)
-        @times_run -=1
-        @total_rounds << @round
-      end
-
-      aggregation(@total_rounds)
-
-      render "show"
-    else
-      render "show"
-      @errors
+    @battle = Battle.new(battle_params)
+    battle_results
+    @battle.total_rounds = @total_rounds
+    if @battle.save
+      redirect_to action: "show", id: @battle.id
     end
+  end
+
+  def show
+    @showing_result = Battle.find(params[:id])
+    aggregation(@showing_result[:total_rounds])
   end
 
   private
@@ -60,11 +53,18 @@ class InputsController < ApplicationController
       :reroll_hits,
       :reroll1_hits,
       :reroll_wounds,
-      :reroll1_wounds,
-      :authenticity_token,
-      :utf8,
-      :commit
+      :reroll1_wounds
     )
+  end
+
+  def battle_results
+    @total_rounds = []
+    @times_run = params["times_run"].to_i
+    while @times_run > 0
+      battle(battle_params)
+      @times_run -=1
+      @total_rounds << @round
+    end
   end
 
   def aggregation(array)

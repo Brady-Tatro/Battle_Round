@@ -1,0 +1,4 @@
+class Battle < ApplicationRecord
+
+
+end

@@ -1,11 +1,5 @@
 <h1>Chart</h1>
-<% if @errors.length > 0 %>
-  <h1><%= "Error: " %></h1>
-    <% @errors.each do |error| %>
-      <li><%= error %></li>
-    <% end %><br />
 
-<% else %>
 
   <% if !@final_hash.nil? %>
     <img src="<%= Gchart.bar(:data => @final_hash.values, :labels => @final_hash.keys, :axis_with_labels => 'y', :max_value => @highest, :min_value => 0, :size => '250x250') %>" />
@@ -25,5 +19,5 @@
     <% end %>
 
     <button type="button" onclick="location.reload()">Fight Again</button><br />
-<% end %>
+
 <button onclick="goBack()">Change Units</button>
