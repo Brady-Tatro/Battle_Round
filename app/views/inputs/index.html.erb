@@ -5,10 +5,10 @@
   Attacking Unit
 </h2>
   <%= label_tag "Attacking Models" %> <br />
-  <%= number_field_tag "attack_models" %><br />
+  <%= number_field_tag "attack_models", 1 %><br />
 
   <%= label_tag "Attacks" %> <br />
-  <%= number_field_tag "shots" %><br />
+  <%= number_field_tag "shots", 1 %><br />
   <%= check_box_tag "d3" %>
   <%= label_tag "D3 Attacks" %>
   <%= check_box_tag "d6" %>
@@ -21,14 +21,14 @@
   <%= number_field_tag "weapon_strength" %><br />
 
   <%= label_tag "Damage" %> <br />
-  <%= number_field_tag "damage" %><br />
+  <%= number_field_tag "damage", 1 %><br />
   <%= check_box_tag "d3_damage" %>
   <%= label_tag "D3 Damage" %>
   <%= check_box_tag "d6_damage" %>
   <%= label_tag "D6 Damage" %><br />
 
   <%= label_tag "AP Value" %> <br />
-  -<%= number_field_tag "ap_value"%><br />
+  -<%= number_field_tag "ap_value", 0%><br />
 
 <hr />
 
@@ -36,19 +36,19 @@
   Defending Unit
 </h2>
   <%= label_tag "Defending Models" %> <br />
-  <%= number_field_tag "defend_models" %><br />
+  <%= number_field_tag "defend_models", 1 %><br />
 
   <%= label_tag "Toughness" %> <br />
   <%= number_field_tag "toughness" %><br />
 
   <%= label_tag "Wounds" %> <br />
-  <%= number_field_tag "wounds" %><br />
+  <%= number_field_tag "wounds", 1 %><br />
 
   <%= label_tag "Armour Save" %> <br />
   <%= number_field_tag "armour" %><br />
 
   <%= label_tag "Invulnerable Save" %> <br />
-  <%= number_field_tag "invulnerable" %><br />
+  <%= number_field_tag "invulnerable", 0 %><br />
 
   <%= label_tag "Leadership Value" %> <br />
   <%= number_field_tag "leadership" %><br />

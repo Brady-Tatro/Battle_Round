@@ -1,9 +1,7 @@
 class InputsController < ApplicationController
   require 'gchart'
   require 'battleround.rb'
-  require 'validation.rb'
   include BattleRound
-  include Validation
 
   def index
     @battle = Battle.new
@@ -15,12 +13,18 @@ class InputsController < ApplicationController
     @battle.total_rounds = @total_rounds
     if @battle.save
       redirect_to action: "show", id: @battle.id
+    else
+      error_message = @battle.errors.full_messages.join(',')
+      redirect_to action: "error"
     end
   end
 
   def show
     @showing_result = Battle.find(params[:id])
     aggregation(@showing_result[:total_rounds])
+  end
+
+  def error
   end
 
   private
