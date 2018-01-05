@@ -15,6 +15,9 @@ class InputsController < ApplicationController
     @battle.total_rounds = @total_rounds
     if @battle.save
       redirect_to action: "show", id: @battle.id
+    else
+      flash[:notice] = 'This Battle is invalid, please check to make sure all values have been filled out properly'
+      redirect_to 
     end
   end
 
