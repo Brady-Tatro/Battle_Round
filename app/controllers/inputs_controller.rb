@@ -25,6 +25,7 @@ class InputsController < ApplicationController
   end
 
   def error
+    
   end
 
   private
