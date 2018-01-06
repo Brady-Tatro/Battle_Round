@@ -25,7 +25,7 @@ class InputsController < ApplicationController
   end
 
   def error
-    
+
   end
 
   private
@@ -77,7 +77,6 @@ class InputsController < ApplicationController
     array.sort.each do |number|
       @final_hash.store(number,array.count(number))
     end
-    # @final_array = @final_hash.to_a
     @final_hash.sort
     @highest = @final_hash.values.sort.last
   end

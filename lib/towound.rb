@@ -49,7 +49,6 @@ module ToWound
         @combat_mortal += 1
       end
     end
-    puts @combat_mortal
     return @combat_mortal
   end
 
