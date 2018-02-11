@@ -8,8 +8,4 @@ module Moral
     end
   end
 
-  def hippo
-    "hippo"
-  end
-
 end
